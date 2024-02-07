@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nextcloud Image Uploader</title>
+</head>
+<body>
+    <input type="file" id="fileInput">
+    <button onclick="uploadImage()">Upload Image</button>
+
+    <script>
+        function uploadImage() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select a file');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/nextcloud/remote.php/dav/files/USERNAME/FOLDER_NAME/' + file.name, {
+                method: 'PUT',
+                headers: {
+                    Authorization: 'Basic ' + btoa('Hububba:BradleyC2006!')
+                },
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to upload image');
+                }
+                alert('Image uploaded successfully');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while uploading the image');
+            });
+        }
+    </script>
+</body>
+</html>
