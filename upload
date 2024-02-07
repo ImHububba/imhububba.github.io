@@ -22,7 +22,7 @@
             const formData = new FormData();
             formData.append('file', file);
 
-            fetch('/nextcloud/remote.php/dav/files/USERNAME/FOLDER_NAME/' + file.name, {
+            fetch('/nextcloud/remote.php/dav/files/Hububba/Photos/' + file.name, {
                 method: 'PUT',
                 headers: {
                     Authorization: 'Basic ' + btoa('Hububba:BradleyC2006!')
