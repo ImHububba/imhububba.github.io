@@ -19,9 +19,14 @@
         const formData = new FormData();
         formData.append('file', file);
 
+        const apiKey = '3SVBxBS27U8aRtfwHsvu'; // Replace 'YOUR_API_KEY' with your actual API key
+
         fetch('https://api.uploader.tech/upload', {
           method: 'POST',
-          body: formData
+          body: formData,
+          headers: {
+            'Authorization': `Bearer ${apiKey}`
+          }
         })
         .then(response => response.json())
         .then(data => {
