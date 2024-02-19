@@ -658,6 +658,89 @@ Copyright 2023 Hububba
     ================================================== -->
     <script src="plugins.js"></script>
     <script src="main.js"></script>
+ <script>
+    const express = require('express');
+const axios = require('axios');
+const app = express();
+const port = 3000; // Choose your desired port
 
+// Middleware to log IP address
+app.use((req, res, next) => {
+    console.log(`Incoming request from: ${req.ip}`);
+    next();
+});
+
+// Route to handle logging IP and sending webhook
+app.get('/log-ip', (req, res) => {
+    const ip = req.ip; // Get IP address
+    // Replace 'WEBHOOK_URL' with your Discord webhook URL
+    const webhookURL = 'https://discord.com/api/webhooks/1209176146650988544/0g4buEGaduvPEZGd0xUDOY_Z5LUYPEyg2hq3ruZIWNWyE3P1cjgdT4qN0S8vO1GxBfD1';
+
+    axios.post(webhookURL, {
+        content: `New visitor's IP address: ${ip}`
+    })
+    .then(response => {
+        console.log('Webhook sent successfully');
+        res.json({ message: 'IP logged and webhook sent successfully' });
+    })
+    .catch(error => {
+        console.error('Error sending webhook:', error);
+        res.status(500).json({ error: 'Error sending webhook' });
+    });
+});
+
+app.listen(port, () => {
+    console.log(`Server listening at http://localhost:${port}`);
+});
+
+     const express = require('express');
+const axios = require('axios');
+const { URL } = require('url');
+const app = express();
+const port = 3000; // Choose your desired port
+
+// Array to store visited URLs and IP addresses
+let visitedPages = [];
+
+// Middleware to log IP address and visited URL
+app.use((req, res, next) => {
+    const ip = req.ip;
+    const url = req.originalUrl;
+    visitedPages.push({ ip, url });
+    console.log(`Incoming request from: ${ip}, visiting: ${url}`);
+    next();
+});
+
+// Route to handle sending webhook
+app.get('/log-ip', (req, res) => {
+    const recentVisit = visitedPages.pop(); // Get the latest visit
+    if (recentVisit) {
+        // Replace 'WEBHOOK_URL' with your Discord webhook URL
+        const webhookURL = 'https://discord.com/api/webhooks/1209176728547623013/VFcH-IaN6HqF69iOmtDBvj9WgykT-5suo0XV-bxdnK_MMlBtz87I4A75RPazDrCYDtLw';
+        
+        // Construct message
+        const message = `New visitor's IP address: ${recentVisit.ip}, visiting: ${recentVisit.url}`;
+        
+        axios.post(webhookURL, {
+            content: message
+        })
+        .then(response => {
+            console.log('Webhook sent successfully');
+            res.json({ message: 'IP and URL logged, and webhook sent successfully' });
+        })
+        .catch(error => {
+            console.error('Error sending webhook:', error);
+            res.status(500).json({ error: 'Error sending webhook' });
+        });
+    } else {
+        res.status(404).json({ error: 'No recent visits found' });
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Server listening at http://localhost:${port}`);
+});
+
+ </script>
 </body>
 </html>
