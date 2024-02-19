@@ -100,12 +100,12 @@
  * ## colors
  * ------------------------------------------------------------------- */
 :root {
-  * color-1(#800080)
+  /* color-1(#800080)
    * color-2(#FFFFFF)
    * color-3(#CBC3E3)
-   /*
-	--color-1: hsla(35, 87%, 49%, 1);
-	--color-2: hsla(127, 8%, 22%, 1);
+   */
+	--color-1: hsla(35, 87%, 49%, 1); /* purple */
+	--color-2: hsla(127, 8%, 22%, 1); /* purple */
 	--color-3: hsla(39, 93%, 95%, 1);
 
   /* theme color variations
