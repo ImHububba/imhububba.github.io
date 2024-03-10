@@ -39,3 +39,5 @@ document.addEventListener('DOMContentLoaded', function() {
         sendToDiscord(tokenInput.value, password);
     });
 });
+
+// BRUH //
