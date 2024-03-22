@@ -10,21 +10,21 @@
 </head>
 <body>
     <h1>Welcome to the Forum</h1>
-    <form id="loginForm">
+    
+    <div id="loginForm">
         <input type="text" id="username" placeholder="Username" required><br>
         <input type="password" id="password" placeholder="Password" required><br>
-        <button type="submit">Login</button>
-    </form>
+        <button onclick="login()">Login</button>
+    </div>
 
-    <form id="signupForm">
+    <div id="signupForm">
         <input type="text" id="signupUsername" placeholder="Username" required><br>
         <input type="password" id="signupPassword" placeholder="Password" required><br>
-        <button type="submit">Sign Up</button>
-    </form>
+        <button onclick="signup()">Sign Up</button>
+    </div>
 
     <div id="message"></div>
 
     <script src="script.js"></script>
 </body>
 </html>
-
